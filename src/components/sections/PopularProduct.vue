@@ -2,7 +2,9 @@
     <div class="container-fluid" style="width: 99vw;">
         <div class="upper-part">
             <h4>Popular Items</h4>
-            <a class="ijo">See All</a>
+
+              <a class="ijo">See All</a>
+
         </div>
         <div class="product-container row g-5 mx-2">
               <div v-for="(value, index) in items" :key="index" class="col">
@@ -15,7 +17,7 @@
                   </div>
               </div>
               <div style="border: 2px solid teal;border-radius: 9px;background-color: aquamarine;width: 100px" class="col">
-                <p class="ijo" style="text-align: center;align-items: center;margin: auto;">See All Product</p>
+                  <p class="ijo" style="text-align: center;align-items: center;margin: auto;">See All Product</p>
               </div>
         </div>
     </div>

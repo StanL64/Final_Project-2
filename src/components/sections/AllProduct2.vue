@@ -1,11 +1,5 @@
 <template>
     <div class="container-fluid" style="width: 99vw;">
-        <div class="upper-part">
-            <h4>New Items</h4>
-            <router-link tag="" to="/all-item">
-              <a class="ijo">See All</a>
-            </router-link>
-        </div>
         <div class="product-container row g-5 mx-2">
               <div v-for="(value, index) in items" :key="index" class="col">
                   <img :src="value.image" alt="Product Image" style="width: 180px; height: 210px;"></img>
@@ -16,20 +10,16 @@
                       <span style="margin: 0;"><i class="bi bi-heart"></i>12</span>
                   </div>
               </div>
-              <div style="border: 2px solid teal;border-radius: 9px;background-color: aquamarine;width: 100px" class="col">
-                <router-link tag="" to="/all-item">
-                  <p class="ijo" style="text-align: center;align-items: center;margin: auto;">See All New Product</p>
-                </router-link>
-              </div>
         </div>
     </div>
 </template>
 <script>
-  import image1 from '@/assets/productImage/9.png'
-  import image2 from '@/assets/productImage/1.png'
-  import image3 from '@/assets/productImage/4.png'
+  import image1 from '@/assets/productImage/4.png'
+  import image2 from '@/assets/productImage/6.png'
+  import image3 from '@/assets/productImage/3.png'
   import image4 from '@/assets/productImage/8.png'
-  import image5 from '@/assets/productImage/2.png'
+  import image5 from '@/assets/productImage/5.png'
+  import image6 from '@/assets/productImage/1.png'
  export default {
     name: 'PopularItem',
     data() {
@@ -40,6 +30,7 @@
           { name: 'Necklace', brand: 'Uniqlo', price: 50000, image: image3 },
           { name: 'Necklace', brand: 'Pull&Bear', price: 70000, image: image4 },
           { name: 'Necklace', brand: 'Pull&Bear', price: 70000, image: image5 },
+          { name: 'Necklace', brand: 'Pull&Bear', price: 70000, image: image6 },
         ],
       };
     },

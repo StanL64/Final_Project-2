@@ -92,7 +92,8 @@ var product = new Vue({
                 img:"",
                 price: 200000
             },
-        ]
+        ],
+        
     },
     method:{
 
