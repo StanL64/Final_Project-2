@@ -1,25 +1,66 @@
-import axios from 'axios';
-import { ref } from 'vue';
+import axios from "axios";
+import Cookies from "js-cookie";
+export default {
+    namespaced: true,
+    state() {
+        return {
+            wishlist: [],
+        }
+    },
+    mutations: {
+        setWishlist(state, wishlist) {
+            state.wishlist = wishlist;
+        },
 
-const DB_URL = 'https://YOUR_PROJECT_id.firebaseio.com';
-const newItemName = ref('');
-const message = ref('');
+    },
+    actions: {
+        actions: {
+  async addToWishlist({ state }, product) {
+    if (!state.user) return;
 
-const addDataToFirebase = async () => {
-  if (!newItemName.value) return;
+    const userId = state.user.localId;
+    const token = state.idToken;
 
-  // The data you want to save
-  const dataToAdd = {
-    name: newItemName.value,
-    timestamp: new Date().toISOString()
-  };
+    await axios.put(
+      `${DB_URL}/wishlist/${userId}/${product.id}.json?auth=${token}`,
+      product
+    );
+  },
 
-  try {
-    const response = await axios.post(DB_URL, dataToAdd);
-    
+  async fetchWishlist({ commit, state }) {
+    const userId = state.user.localId;
+    const token = state.idToken;
 
-  } catch (error) {
-    console.error('Error adding data:', error);
-    message.value = 'Failed to add data.';
-  }
-};
+    const res = await axios.get(
+      `${DB_URL}/wishlist/${userId}.json?auth=${token}`
+    );
+
+    const data = res.data || {};
+    const wishlistArray = Object.keys(data).map(key => ({
+      id: key,
+      ...data[key],
+    }));
+    commit('setWishlist', wishlistArray);
+  },
+
+  async removeFromWishlist({ state }, productId) {
+    const userId = state.user.localId;
+    const token = state.idToken;
+
+    await axios.delete(
+      `${DB_URL}/wishlist/${userId}/${productId}.json?auth=${token}`
+    );
+  },
+},
+methods: {
+  addWishlist(item) {
+    this.$store.dispatch('addToWishlist', item);
+  },
+    },
+    methods: {
+        addWishlist(item) {
+            this.$store.dispatch('addToWishlist', item);
+        },
+    },
+}
+}

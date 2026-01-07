@@ -10,12 +10,13 @@ import HomeFooter from './components/sections/HomeFooter.vue';
 import NewProduct from './components/sections/NewProduct.vue';
 import ShopByBrand from './components/sections/ShopByBrand.vue';
 import DetailProduct from './components/pages/DetailProduct.vue';
+import PopularProduct2 from './components/sections/PopularProduct2.vue';
 
 </script>
 
 <template>
   <div>
-    <RouterView/>
+    <PopularProduct2/>
   </div>
   
 </template>
